@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第二章数据可视化 - 交互式图表展示</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <link rel="stylesheet" href="chapter2_styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <h1>第二章数据可视化</h1>
+            <ul>
+                <li><a href="#home" class="nav-link active" data-section="home">首页</a></li>
+                <li><a href="#basic-line" class="nav-link" data-section="basic-line">基础折线图</a></li>
+                <li><a href="#temperature" class="nav-link" data-section="temperature">温度折线图</a></li>
+                <li><a href="#basic-bar" class="nav-link" data-section="basic-bar">基础柱状图</a></li>
+                <li><a href="#stacked-bar" class="nav-link" data-section="stacked-bar">堆积柱状图</a></li>
+                <li><a href="#pie-chart" class="nav-link" data-section="pie-chart">饼图</a></li>
+                <li><a href="#scatter-plot" class="nav-link" data-section="scatter-plot">散点图</a></li>
+                <li><a href="#area-chart" class="nav-link" data-section="area-chart">面积图</a></li>
+                <li><a href="#bubble-chart" class="nav-link" data-section="bubble-chart">气泡图</a></li>
+                <li><a href="#radar-chart" class="nav-link" data-section="radar-chart">雷达图</a></li>
+                <li><a href="#heatmap" class="nav-link" data-section="heatmap">热力图</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- 首页 -->
+        <section id="home" class="content-section active">
+            <div class="section-content">
+                <h2>欢迎来到第二章数据可视化展示</h2>
+                <p>本页面展示了基于第二章内容创建的10种不同类型的交互式图表。所有图表都支持悬停查看数据详情、缩放和筛选等功能。</p>
+                <div class="chart-grid">
+                    <div class="chart-preview" data-section="basic-line">
+                        <h3>基础折线图</h3>
+                        <p>展示基础折线图的绘制方法</p>
+                    </div>
+                    <div class="chart-preview" data-section="temperature">
+                        <h3>温度折线图</h3>
+                        <p>未来15天最高最低温度趋势</p>
+                    </div>
+                    <div class="chart-preview" data-section="basic-bar">
+                        <h3>基础柱状图</h3>
+                        <p>单组数据柱状图展示</p>
+                    </div>
+                    <div class="chart-preview" data-section="stacked-bar">
+                        <h3>堆积柱状图</h3>
+                        <p>多组数据堆积展示</p>
+                    </div>
+                    <div class="chart-preview" data-section="pie-chart">
+                        <h3>饼图</h3>
+                        <p>数据占比分布展示</p>
+                    </div>
+                    <div class="chart-preview" data-section="scatter-plot">
+                        <h3>散点图</h3>
+                        <p>变量相关性分析</p>
+                    </div>
+                    <div class="chart-preview" data-section="area-chart">
+                        <h3>面积图</h3>
+                        <p>数据量累积展示</p>
+                    </div>
+                    <div class="chart-preview" data-section="bubble-chart">
+                        <h3>气泡图</h3>
+                        <p>三维数据可视化</p>
+                    </div>
+                    <div class="chart-preview" data-section="radar-chart">
+                        <h3>雷达图</h3>
+                        <p>多维度数据对比</p>
+                    </div>
+                    <div class="chart-preview" data-section="heatmap">
+                        <h3>热力图</h3>
+                        <p>数据密度分布展示</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 基础折线图 -->
+        <section id="basic-line" class="content-section">
+            <div class="section-content">
+                <h2>基础折线图</h2>
+                <div class="chart-container">
+                    <div id="basic-line-chart"></div>
+                </div>
+                <div class="controls">
+                    <button onclick="updateBasicLineChart()">刷新数据</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 温度折线图 -->
+        <section id="temperature" class="content-section">
+            <div class="section-content">
+                <h2>温度折线图 - 未来15天温度趋势</h2>
+                <div class="chart-container">
+                    <div id="temperature-chart"></div>
+                </div>
+                <div class="controls">
+                    <label>
+                        <input type="checkbox" id="show-max-temp" checked> 显示最高温度
+                    </label>
+                    <label>
+                        <input type="checkbox" id="show-min-temp" checked> 显示最低温度
+                    </label>
+                    <button onclick="updateTemperatureChart()">重新生成</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 基础柱状图 -->
+        <section id="basic-bar" class="content-section">
+            <div class="section-content">
+                <h2>基础柱状图</h2>
+                <div class="chart-container">
+                    <div id="basic-bar-chart"></div>
+                </div>
+                <div class="controls">
+                    <button onclick="updateBasicBarChart()">生成新数据</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 堆积柱状图 -->
+        <section id="stacked-bar" class="content-section">
+            <div class="section-content">
+                <h2>堆积柱状图</h2>
+                <div class="chart-container">
+                    <div id="stacked-bar-chart"></div>
+                </div>
+                <div class="controls">
+                    <button onclick="updateStackedBarChart()">更新数据</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 饼图 -->
+        <section id="pie-chart" class="content-section">
+            <div class="section-content">
+                <h2>饼图</h2>
+                <div class="chart-container">
+                    <div id="pie-chart-container"></div>
+                </div>
+                <div class="controls">
+                    <button onclick="updatePieChart()">随机生成</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 散点图 -->
+        <section id="scatter-plot" class="content-section">
+            <div class="section-content">
+                <h2>散点图</h2>
+                <div class="chart-container">
+                    <div id="scatter-plot-container"></div>
+                </div>
+                <div class="controls">
+                    <button onclick="updateScatterPlot()">生成新数据</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 面积图 -->
+        <section id="area-chart" class="content-section">
+            <div class="section-content">
+                <h2>面积图</h2>
+                <div class="chart-container">
+                    <div id="area-chart-container"></div>
+                </div>
+                <div class="controls">
+                    <button onclick="updateAreaChart()">更新数据</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 气泡图 -->
+        <section id="bubble-chart" class="content-section">
+            <div class="section-content">
+                <h2>气泡图</h2>
+                <div class="chart-container">
+                    <div id="bubble-chart-container"></div>
+                </div>
+                <div class="controls">
+                    <button onclick="updateBubbleChart()">重新生成</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 雷达图 -->
+        <section id="radar-chart" class="content-section">
+            <div class="section-content">
+                <h2>雷达图</h2>
+                <div class="chart-container">
+                    <div id="radar-chart-container"></div>
+                </div>
+                <div class="controls">
+                    <button onclick="updateRadarChart()">更新数据</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 热力图 -->
+        <section id="heatmap" class="content-section">
+            <div class="section-content">
+                <h2>热力图</h2>
+                <div class="chart-container">
+                    <div id="heatmap-container"></div>
+                </div>
+                <div class="controls">
+                    <button onclick="updateHeatmap()">生成新热力图</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 第二章数据可视化展示 | 基于第二章内容创建</p>
+    </footer>
+
+    <script src="chapter2_script.js"></script>
+</body>
+</html>
